@@ -1,0 +1,12 @@
+#env
+**/.env
+
+# node modules
+**/node_modules
+
+# ide
+.idea
+.DS_Store
+
+# logs
+**/logs
