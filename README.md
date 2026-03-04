@@ -3,6 +3,8 @@
 AWS Bedrock 기반 RAG(Retrieval-Augmented Generation) 시스템입니다.
 구조화 데이터를 Text-to-SQL로, FAQ·공지 등 비정형 텍스트는 벡터 검색으로 처리하는 멀티모달 AI 챗봇입니다.
 
+임베딩 모델로는 다국어가 지원되는 `cohere.embed-multilingual-v3` 모델을 사용합니다.
+
 ---
 
 ## 프로젝트 구조
