@@ -1,7 +1,8 @@
 const db = require("./config/db");
-const {getEmbedding, generateAnswer} = require("./config/awsBedrock")
+const {getEmbedding, generateAnswer} = require("./config/awsBedrock");
+const {sesClient, createReminderEmailCommand} = require("./config/awsSes");
 
-const TABLE = "bedrock_integration.unified_vector_store";
+const VECTOR_TABLE = "bedrock_integration.unified_vector_store";
 const SOURCE_TABLES = "faq";
 
 
@@ -12,7 +13,7 @@ const searchSimilarFAQ = async (db, embedding, topK = 3) => {
       `SELECT t.source_table,
               t.content,
               1 - (t.embedding <=> $1::vector) AS similarity
-       FROM ${TABLE} t
+       FROM ${VECTOR_TABLE} t
        WHERE t.status = 'completed'
          AND t.is_deleted = false
          AND t.source_table = '${SOURCE_TABLES}'
@@ -40,7 +41,6 @@ exports.handler = async (event) => {
   }
 
   try {
-
 
     // 1. 질문 임베딩
     const questionEmbedding = await getEmbedding(userQuestion);

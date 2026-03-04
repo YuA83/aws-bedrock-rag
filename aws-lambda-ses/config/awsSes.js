@@ -23,4 +23,4 @@ const createReminderEmailCommand = (
   });
 };
 
-module.exports = {createReminderEmailCommand};
+module.exports = {sesClient, createReminderEmailCommand};
